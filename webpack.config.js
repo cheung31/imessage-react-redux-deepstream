@@ -3,7 +3,7 @@ var webpack = require('webpack')
 var path = require('path')
 
 module.exports = {
-  context: path.join(__dirname, './client'),
+  context: path.join(__dirname, './src/client'),
   entry: {
     jsx: './index.js',
     html: './index.html',
@@ -52,7 +52,7 @@ module.exports = {
     })
   ],
   devServer: {
-    contentBase: './client',
+    contentBase: './src/client',
     hot: true
   }
 }
