@@ -20,7 +20,7 @@ App
                |_ AvatarView
                |_ AuthorLabelView
                |_ MessageBodyView
-      | MessageStatusView
+      |_ MessageStatusView
       |_ TypingIndicatorView
    |_ ConversationInputView
 ```
