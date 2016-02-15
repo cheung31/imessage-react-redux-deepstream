@@ -3,6 +3,27 @@
 
 > An iMessage-like web-based messaging client
 
+## Component Tree
+```
+App
+|_ AuthenticationView
+|_ ConversationsView
+   |_ ConversationListHeader
+   |_ ConversationListView
+      |_ ConversationListItemView
+|_ ConversationView
+   |_ ConversationHeader
+   |_ ConversationThreadView
+      |_ HourMessageGroupView
+         |_ MinuteMessageGroupView
+            |_ MessageView
+               |_ AvatarView
+               |_ AuthorLabelView
+               |_ MessageBodyView
+      | MessageStatusView
+      |_ TypingIndicatorView
+   |_ ConversationInputView
+```
 
 ## Dependencies
 ### Server-side
