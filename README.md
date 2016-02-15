@@ -1,10 +1,15 @@
 
-# Frontend Boilerplate
+# iMsg
 
-A boilerplate of things that mostly shouldn't exist.
+> An iMessage-like web-based messaging client
 
-## Contains
 
+## Dependencies
+### Server-side
+- [x] [Deepstream.io](https://deepstream.io)
+
+### Client-side
+As seen in [frontend-boilerplate](https://github.com/tj/frontend-boilerplate):
 - [x] [Webpack](https://webpack.github.io)
 - [x] [React](https://facebook.github.io/react/)
 - [x] [Redux](https://github.com/rackt/redux)
@@ -19,21 +24,14 @@ A boilerplate of things that mostly shouldn't exist.
 - [x] TodoMVC example
 
 ## Setup
-
 ```
 $ npm install
 ```
 
 ## Running
-
 ```
 $ npm start
 ```
 
-## Note
-
-This is just my personal boilerplate, it may or may not be a good fit for your project(s).
-
 # License
-
 MIT
