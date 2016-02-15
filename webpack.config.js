@@ -7,7 +7,7 @@ module.exports = {
   entry: {
     jsx: './index.js',
     html: './index.html',
-    vendor: ['react']
+    vendor: ['react', 'deepstream.io-client-js']
   },
   output: {
     path: path.join(__dirname, './static'),
@@ -54,5 +54,10 @@ module.exports = {
   devServer: {
     contentBase: './src/client',
     hot: true
+  },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
   }
 }
