@@ -4,14 +4,15 @@ var app      = express();
 var port     = process.env.PORT || 8001;
 var mongoose = require('mongoose');
 var passport = require('passport');
-
-var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
+
+var morgan       = require('morgan');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 var mongoStore = require('connect-mongo')(session);
 var passportConfigurer = require('../../config/passport');
+var cookieSecret = require('../../config/auth').cookieSecret;
 
 var authServer = {
     start: function () {
@@ -31,17 +32,19 @@ var authServer = {
         app.set('view engine', 'jade'); // set up jade for templating
 
         // required for passport
-        app.use(cookieParser());
-        app.use(cookieSession({ secret: 'ch4t5evar' }));
-        app.use(session({
-          resave: true,
-          saveUninitialized: true,
-          secret: 'ch4t5evar',
-          store: new mongoStore({
-            url: databaseUrl,
-            collection : 'sessions'
-          })
+        app.use(cookieParser()); 
+        app.use(cookieSession({
+            key: 'imsg-sess',
+            secret: cookieSecret,
+            httpOnly: false
         }));
+        app.use(function (req, res, next) {
+            console.log(req.session);
+            console.log(req.cookies);
+            console.log(req.signedCookies);
+            next();
+        });
+        
         // use passport session
         app.use(passport.initialize());
         app.use(passport.session());

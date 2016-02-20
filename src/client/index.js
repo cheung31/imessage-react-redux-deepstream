@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
 import React from 'react'
 import deepstream from 'deepstream.io-client-js'
+import Cookie from 'js-cookie'
 
 import App from './containers/App'
 import configure from './store'
@@ -11,8 +12,9 @@ import configure from './store'
 const ds = deepstream( 'localhost:6020' )
 const uid = ds.getUid()
 const username = 'iMsg-' + uid
-console.log(username)
-ds.login({ username: username })
+const sid = Cookie.get('imsg-sess')
+console.log('uid: ', username)
+ds.login({ sid: sid })
 
 var list = ds.record.getList('users')
 var conversations = ds.record.getList('user/'+uid+'/conversations')
