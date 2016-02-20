@@ -2,7 +2,8 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import MainSection from '../../components/MainSection'
+import ConversationsView from '../../components/ConversationsView'
+import ConversationView from '../../components/ConversationView'
 import * as TodoActions from '../../actions/todos'
 import style from './style.css'
 
@@ -10,8 +11,9 @@ class App extends Component {
   render() {
     const { todos, actions, children } = this.props
     return (
-      <div className={style.normal}>
-        <MainSection todos={todos} actions={actions} />
+      <div>
+        <ConversationsView />
+        <ConversationView />
         {children}
       </div>
     )

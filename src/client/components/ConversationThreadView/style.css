@@ -1,0 +1,11 @@
+.threadView {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    top: 65px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: #FFF;
+    overflow-x: hidden;
+}

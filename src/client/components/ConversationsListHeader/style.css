@@ -1,0 +1,15 @@
+.header {
+    box-sizing: border-box;
+    position: relative;
+    height: 65px;
+    background-color: rgb(246,246,246);
+    border-bottom: 1px solid rgb(207,207,207);
+}
+
+.title {
+    color: #111;
+    line-height: 65px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.3em;
+}
