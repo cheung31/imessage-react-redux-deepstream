@@ -15,7 +15,7 @@ class ConversationThread extends Component {
         //<MessageStatus onSendMessage={onSendMessage} onReadMessage={onReadMessage} />
         //<TypingIndicator onStartTyping={onStartTyping} />
     return (
-      <div>
+      <div className={style.threadContainer}>
         <ul>{messages}</ul>
       </div>
     )
