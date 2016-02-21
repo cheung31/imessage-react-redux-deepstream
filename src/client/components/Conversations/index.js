@@ -1,18 +1,19 @@
 
 import React, { Component } from 'react'
 import ConversationsListHeader from '../ConversationsListHeader'
-import ConversationsListView from '../ConversationsListView'
+import ConversationsListContainer from '../../containers/ConversationsListContainer'
 import style from './style.css'
 
-class ConversationsView extends Component {
+class Conversations extends Component {
   render() {
+    const { conversations } = this.props
     return (
       <section className={style.conversations}>
         <ConversationsListHeader />
-        <ConversationsListView />
+        <ConversationsListContainer />
       </section>
     )
   }
 }
 
-export default ConversationsView
+export default Conversations

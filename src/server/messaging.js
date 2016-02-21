@@ -2,9 +2,11 @@
 //var RedisMessageConnector = require( 'deepstream.io-msg-redis' );
 var DeepstreamServer = require('deepstream.io');
 var server = new DeepstreamServer();
+var C = server.constants;
 var cookieParser = require('cookie-parser');
 var cookieSecret = require('../../config/auth').cookieSecret;
 var User = require('./models/user');
+var utils = require('../utils');
 
 var authServer = {
     start: function () {
@@ -25,14 +27,18 @@ var authServer = {
         }));
         */
 
-        server.set( 'permissionHandler', {
+        server.set('dataTransforms', [
+        ]);
+
+        server.set('permissionHandler', {
             isValidUser: function( connectionData, authData, callback ) {
                 if (authData.sid) {
-                    var body = new Buffer(authData.sid, 'base64').toString('utf8');
-                    var jsonBody = JSON.parse(body);
-                    var userId = jsonBody.passport.user;
-                    
-                    User.findById(userId, callback);
+                    var userId = utils.getUserIdFromSession(authData.sid);
+                    User.findById(userId, function (err, foundUser) {
+                        callback(err, userId, foundUser);
+                    });
+                } else {
+                    callback('Invalid credentials');
                 }
             },
 

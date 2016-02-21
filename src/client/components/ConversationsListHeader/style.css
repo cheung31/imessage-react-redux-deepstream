@@ -10,6 +10,23 @@
     color: #111;
     line-height: 65px;
     text-align: center;
-    font-weight: bold;
     font-size: 1.3em;
+}
+
+.titleLabel {
+    display: inline-block; 
+    font-weight: bold;
+    text-align: center;
+}
+
+.titleRightAction {
+    display: inline-block;
+    position: absolute;
+    color: rgb(20,111,246);
+    text-decoration: none;
+    right: 0;
+    width: 65px;
+    line-height: 65px;
+    height: 65px;
+    font-size: 1.7em;
 }

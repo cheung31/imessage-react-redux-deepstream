@@ -1,0 +1,16 @@
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+li {
+    border-bottom: 1px solid #ccc;
+    height: 5em;
+    padding: 0 1em;
+}
+
+.selectedListItem {
+    background-color: rgb(20,111,246);
+    color: #FFF;
+}

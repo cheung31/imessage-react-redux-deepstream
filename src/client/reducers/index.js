@@ -1,9 +1,9 @@
 
 import { routeReducer as routing } from 'react-router-redux'
 import { combineReducers } from 'redux'
-import todos from './todos'
+import conversations from './conversations'
 
 export default combineReducers({
   routing,
-  todos
+  conversations
 })

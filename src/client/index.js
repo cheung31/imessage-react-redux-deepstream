@@ -7,26 +7,48 @@ import deepstream from 'deepstream.io-client-js'
 import Cookie from 'js-cookie'
 
 import App from './containers/App'
+import NewConversation from './components/NewConversation'
+//import ViewConversation from './components/ViewConversation'
 import configure from './store'
 
 const ds = deepstream( 'localhost:6020' )
-const uid = ds.getUid()
-const username = 'iMsg-' + uid
 const sid = Cookie.get('imsg-sess')
-console.log('uid: ', username)
 ds.login({ sid: sid })
 
-var list = ds.record.getList('users')
+var usersList = ds.record.getList('users')
+usersList.subscribe(function onUsersChange(users) {
+    console.log('List of users is now', usersList.getEntries())
+});
+usersList.addEntry(sid);
+
+/*
 var conversations = ds.record.getList('user/'+uid+'/conversations')
+conversations.subscribe(function onConversationsChange(conversations) {
+    console.log( 'List of my conversations is now', conversations.getEntries() )
+});
+*/
 
-const store = configure()
+var store;
+usersList.whenReady( function onUsersListReady() {
+    var initialUsers = [];
+    usersList.getEntries().forEach( function (userId) {
+        var user = ds.record.getRecord(userId)
+        user.whenReady( function onUserReady() {
+            initialUsers.push(user.get())
+        });
+    })
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App}>
-      </Route>
-    </Router>
-  </Provider>,
-  document.getElementById('root')
-)
+    store = configure({
+        //users: initialUsers
+    })
+    ReactDOM.render(
+      <Provider store={store}>
+        <Router history={browserHistory}>
+          <Route path="/" component={App}>
+            <Route path="new" component={NewConversation}/>
+          </Route>
+        </Router>
+      </Provider>,
+      document.getElementById('root')
+    )
+});
