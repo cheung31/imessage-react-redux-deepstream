@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 
 import ConversationHeader from '../../components/ConversationHeader'
 import ConversationThread from '../../components/ConversationThread'
+import MessageInput from '../../components/MessageInput'
 import * as ConversationActions from '../../actions/conversations'
 import style from './style.css'
 
@@ -21,6 +22,7 @@ class ConversationThreadContainer extends Component {
             onReceiveMessage={actions.receiveMessage}
             onReadMessage={actions.readMessage}
             onStartTyping={actions.startTyping} />
+          <MessageInput />
       </div>
     )
   }
