@@ -19,7 +19,6 @@ var usersList = ds.record.getList('users')
 usersList.subscribe(function onUsersChange(users) {
     console.log('List of users is now', usersList.getEntries())
 });
-usersList.addEntry(sid);
 
 /*
 var conversations = ds.record.getList('user/'+uid+'/conversations')
@@ -30,8 +29,14 @@ conversations.subscribe(function onConversationsChange(conversations) {
 
 var store;
 usersList.whenReady( function onUsersListReady() {
-    var initialUsers = [];
-    usersList.getEntries().forEach( function (userId) {
+    var initialUsers = []
+    var userEntries = usersList.getEntries()
+
+    if (userEntries.indexOf(sid) === -1) {
+        usersList.addEntry(sid)
+    }
+
+    userEntries.forEach( function (userId) {
         var user = ds.record.getRecord(userId)
         user.whenReady( function onUserReady() {
             initialUsers.push(user.get())
