@@ -16,16 +16,16 @@ App
    |_ Conversation
       |_ ConversationHeader
       |_ ConversationThreadContainer (Container)
-         |_ ConvesrsationThread
-            |_ HourMessageGroup
-               |_ MinuteMessageGroup
+         |_ ConversationThread
+            |_ HourMessageGroup?
+               |_ MinuteMessageGroup?
                   |_ Message
                      |_ Avatar
                      |_ AuthorLabel
                      |_ MessageBody
            |_ MessageStatus
            |_ TypingIndicator
-         |_ ConversationInput
+      |_ ConversationInput
 ```
 
 ## Dependencies
