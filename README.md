@@ -6,23 +6,26 @@
 ## Component Tree
 ```
 App
-|_ AuthenticationView
-|_ ConversationsView
-   |_ ConversationListHeader
-   |_ ConversationListView
-      |_ ConversationListItemView
-|_ ConversationView
-   |_ ConversationHeader
-   |_ ConversationThreadView
-      |_ HourMessageGroupView
-         |_ MinuteMessageGroupView
-            |_ MessageView
-               |_ AvatarView
-               |_ AuthorLabelView
-               |_ MessageBodyView
-      |_ MessageStatusView
-      |_ TypingIndicatorView
-   |_ ConversationInputView
+|_ NewConversation
+|_ ViewConversation
+   |_ Conversations
+      |_ ConversationListHeader
+      |_ ConversationListContainer (Container)
+         | ConversationList
+           |_ ConversationListItem
+   |_ Conversation
+      |_ ConversationHeader
+      |_ ConversationThreadContainer (Container)
+         |_ ConvesrsationThread
+            |_ HourMessageGroup
+               |_ MinuteMessageGroup
+                  |_ Message
+                     |_ Avatar
+                     |_ AuthorLabel
+                     |_ MessageBody
+           |_ MessageStatus
+           |_ TypingIndicator
+         |_ ConversationInput
 ```
 
 ## Dependencies
