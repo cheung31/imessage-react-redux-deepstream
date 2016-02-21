@@ -11,6 +11,5 @@ li {
 }
 
 .selectedListItem {
-    background-color: rgb(20,111,246);
-    color: #FFF;
+    background-color: #D9D9D9;
 }
