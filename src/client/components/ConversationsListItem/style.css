@@ -1,3 +1,7 @@
 .listItem {
     overflow: hidden;
 }
+
+h3 {
+    color: #111;
+}

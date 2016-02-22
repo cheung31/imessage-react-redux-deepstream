@@ -11,7 +11,7 @@ class NewConversation extends Component {
   componentWillMount() {
     const { dispatch } = this.props
     dispatch(ConversationActions.addConversation({
-        title: 'New message'
+        title: 'New Message'
     }))
   }
 

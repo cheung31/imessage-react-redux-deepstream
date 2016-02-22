@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import ConversationHeader from '../../components/ConversationHeader'
 import ConversationThread from '../../components/ConversationThread'
 import MessageInput from '../../components/MessageInput'
+import MessageRecipients from '../../components/MessageRecipients'
 import * as ConversationActions from '../../actions/conversations'
 import style from './style.css'
 
@@ -16,6 +17,7 @@ class ConversationThreadContainer extends Component {
     return (
       <div>
           <ConversationHeader titleLabel={conversation.title} />
+          <MessageRecipients />
           <ConversationThread
             conversation={conversation}
             onSendMessage={actions.sendMessage}
