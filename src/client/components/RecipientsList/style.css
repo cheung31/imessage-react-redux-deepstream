@@ -1,8 +1,26 @@
+.animate {
+    -webkit-transition: top 0.3s ease-in;
+    -moz-transition: top 0.3s ease-in;
+    -ms-transition: top 0.3s ease-in;
+    -o-transition: top 0.3s ease-in;
+    transition: top 0.3s ease-in;
+}
 .recipientsList {
     position: absolute;
     z-index: 10;
     display: block;
-    top: 120px;
+    top: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: green;
+}
+
+.recipientsListVisible {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    top: 0px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -18,7 +36,8 @@
     border-bottom: 1px solid rgb(207,207,207);
 }
 
-.recipientsList .title {
+.recipientsList .title,
+.recipientsListVisible .title{
     background-color: rgba(246,246,246, 1);
     color: #111;
     line-height: 65px;
@@ -30,4 +49,16 @@
     display: inline-block; 
     font-weight: bold;
     text-align: center;
+}
+
+.titleRightAction {
+    display: inline-block;
+    position: absolute;
+    color: rgb(20,111,246);
+    text-decoration: none;
+    right: 10px;
+    width: 65px;
+    line-height: 65px;
+    height: 65px;
+    font-size: 1em;
 }

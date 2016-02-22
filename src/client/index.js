@@ -44,7 +44,7 @@ usersList.whenReady( function onUsersListReady() {
     })
 
     store = configure({
-        //users: initialUsers
+        users: initialUsers
     })
     ReactDOM.render(
       <Provider store={store}>

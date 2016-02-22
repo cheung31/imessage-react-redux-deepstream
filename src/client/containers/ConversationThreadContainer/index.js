@@ -7,19 +7,19 @@ import ConversationHeader from '../../components/ConversationHeader'
 import ConversationThread from '../../components/ConversationThread'
 import MessageInput from '../../components/MessageInput'
 import MessageRecipients from '../../components/MessageRecipients'
-import RecipientsList from '../../components/RecipientsList'
+import RecipientsListContainer from '..//RecipientsListContainer'
 import * as ConversationActions from '../../actions/conversations'
 import style from './style.css'
 
 class ConversationThreadContainer extends Component {
   render() {
-    const { selectedConversation, conversationsById, actions } = this.props
+    const { selectedConversation, conversationsById, showRecipientsList, actions } = this.props
     const conversation = conversationsById && conversationsById[selectedConversation] ? conversationsById[selectedConversation] : {}
     return (
       <div>
           <ConversationHeader titleLabel={conversation.title} />
           <MessageRecipients />
-          <RecipientsList />
+          <RecipientsListContainer visible={showRecipientsList} />
           <ConversationThread
             conversation={conversation}
             onSendMessage={actions.sendMessage}
@@ -36,7 +36,8 @@ function mapStateToProps(state) {
   var conversationsState = state.conversations
   return {
     selectedConversation: conversationsState.selectedConversation,
-    conversationsById: conversationsState.conversationsById
+    conversationsById: conversationsState.conversationsById,
+    showRecipientsList: state.recipientsList
   }
 }
 

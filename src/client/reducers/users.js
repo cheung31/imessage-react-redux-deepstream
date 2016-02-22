@@ -6,7 +6,8 @@ const initialState = []
 export default handleActions({
   'add user' (state, action) {
     return [
-        action.payload
+        action.payload,
+        ...state
     ]
   }
-})
+}, initialState)
