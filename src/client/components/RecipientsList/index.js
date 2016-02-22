@@ -16,8 +16,9 @@ class RecipientsList extends Component {
   render() {
     const { users, visible } = this.props
     var items = []
-    for (let user of users) {
-      items.push(<li><RecipientsListItem user={user} /></li>)
+    debugger;
+    for (let index in users) {
+      items.push(<li key={index}><RecipientsListItem user={users[index]} /></li>)
     }
     return (
       <div className={[visible ? style.recipientsListVisible : style.recipientsList, style.animate].join(' ')}>

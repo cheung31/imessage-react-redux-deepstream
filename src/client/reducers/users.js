@@ -9,5 +9,9 @@ export default handleActions({
         action.payload,
         ...state
     ]
+  },
+
+  'update user list' (state, action) {
+    return action.payload
   }
 }, initialState)
