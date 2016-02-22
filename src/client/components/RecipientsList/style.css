@@ -1,0 +1,33 @@
+.recipientsList {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    top: 120px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: green;
+}
+
+.header {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+    height: 65px;
+    background-color: rgba(246,246,246, 0.85);
+    border-bottom: 1px solid rgb(207,207,207);
+}
+
+.recipientsList .title {
+    background-color: rgba(246,246,246, 1);
+    color: #111;
+    line-height: 65px;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.titleLabel {
+    display: inline-block; 
+    font-weight: bold;
+    text-align: center;
+}
