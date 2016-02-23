@@ -1,19 +1,37 @@
 
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
 import style from './style.css'
 import deepstream from 'deepstream.io-client-js'
 import App from '../../containers/App'
+import * as DraftActions from '../../actions/draft'
 
 class RecipientsListItem extends Component {
-  render() {
+  onClick(e) {
+    e.preventDefault()
+    dispatch(DraftActions.addRecipient(this.state.username))
+  }
+
+  componentDidMount() {
     const { user } = this.props
-    const userRecord = App.ds.record.getRecord(user).get()
+    this.record = App.ds.record.getRecord(user);
+    this.record.subscribe( function( data ) {
+        this.setState( data );
+    }.bind( this ));
+  }
+
+  componentWillUnmount() {
+    this.record.discard()
+  }
+
+  render() {
     return (
-      <li className={style.recipientsListItem}>
-        <h3>{userRecord.username}</h3>
+      <li className={style.recipientsListItem} onClick={this.onClick.bind(this)}>
+        <h3>{this.state ? this.state.username : ''}</h3>
       </li>
     )
   }
 }
 
-export default RecipientsListItem
+export default connect()(RecipientsListItem)
