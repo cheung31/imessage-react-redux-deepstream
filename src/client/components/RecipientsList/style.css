@@ -27,7 +27,7 @@
     background-color: #FFF;
 }
 
-header {
+.header {
     box-sizing: border-box;
     position: relative;
     z-index: 10;
@@ -38,7 +38,6 @@ header {
 
 .recipientsList .title,
 .recipientsListVisible .title{
-    background-color: rgba(246,246,246, 1);
     color: #111;
     line-height: 65px;
     text-align: center;

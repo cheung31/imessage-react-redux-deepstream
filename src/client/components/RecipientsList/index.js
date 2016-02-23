@@ -21,9 +21,11 @@ class RecipientsList extends Component {
     }
     return (
       <div className={[visible ? style.recipientsListVisible : style.recipientsList, style.animate].join(' ')}>
-        <header className={style.title}>
-            <span className={style.titleLabel}>All Contacts</span>
-            <a href="#" className={style.titleRightAction} onClick={this.onCancelRecipientsList.bind(this)}>Cancel</a>
+        <header className={style.header}>
+            <div className={style.title}>
+                <span className={style.titleLabel}>All Contacts</span>
+                <a href="#" className={style.titleRightAction} onClick={this.onCancelRecipientsList.bind(this)}>Cancel</a>
+            </div>
         </header>
         <ul>{items}</ul>
       </div>
