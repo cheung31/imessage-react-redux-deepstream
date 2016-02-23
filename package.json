@@ -23,7 +23,6 @@
     "css-loader": "^0.23.1",
     "deepstream.io-client-js": "0.4.0",
     "file-loader": "^0.8.4",
-    "jade": "1.11.0",
     "js-cookie": "2.1.0",
     "postcss-loader": "^0.8.0",
     "react": "^0.14.0",
@@ -43,16 +42,19 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.15.0",
+    "connect-ensure-login": "0.1.1",
+    "connect-flash": "0.1.1",
     "connect-mongo": "0.8.1",
     "cookie-parser": "1.4.1",
     "cookie-session": "1.2.0",
     "deepstream.io": "0.8.0",
+    "ejs": "2.4.1",
     "express": "4.13.4",
     "express-session": "1.13.0",
     "mongoose": "4.4.4",
     "morgan": "1.7.0",
     "passport": "0.3.2",
-    "passport-facebook": "2.1.0",
+    "passport-local": "1.0.0",
     "session-file-store": "0.0.24"
   }
 }

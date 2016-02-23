@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var cookieSession = require('cookie-session');
+var flash    = require('connect-flash');
 
 var morgan       = require('morgan');
 var bodyParser   = require('body-parser');
@@ -29,7 +30,7 @@ var authServer = {
         app.use(morgan('dev')); // log every request to the console
         app.use(bodyParser()); // get information from html forms
 
-        app.set('view engine', 'jade'); // set up jade for templating
+        app.set('view engine', 'ejs'); // set up jade for templating
 
         // required for passport
         app.use(cookieParser()); 
@@ -48,6 +49,7 @@ var authServer = {
         // use passport session
         app.use(passport.initialize());
         app.use(passport.session());
+        app.use(flash()); // use connect-flash for flash messages stored in session
 
         // routes ======================================================================
         require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport

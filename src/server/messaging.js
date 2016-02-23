@@ -32,7 +32,7 @@ var authServer = {
                 if (authData.sid) {
                     var userId = utils.getUserIdFromSession(authData.sid);
                     User.findById(userId, function (err, foundUser) {
-                        callback(err, userId, foundUser.facebook.toObject());
+                        callback(err, userId, foundUser.local.toObject());
                     });
                 } else {
                     callback('Invalid credentials');
