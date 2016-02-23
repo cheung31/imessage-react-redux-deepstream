@@ -17,7 +17,6 @@ class RecipientsListContainer extends Component {
 }
 
 function mapStateToProps(state) {
-    debugger;
   return {
     users: state.users,
     showRecipientsList: state.recipientsList

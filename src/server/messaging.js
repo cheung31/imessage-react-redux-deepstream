@@ -27,15 +27,12 @@ var authServer = {
         }));
         */
 
-        server.set('dataTransforms', [
-        ]);
-
         server.set('permissionHandler', {
             isValidUser: function( connectionData, authData, callback ) {
                 if (authData.sid) {
                     var userId = utils.getUserIdFromSession(authData.sid);
                     User.findById(userId, function (err, foundUser) {
-                        callback(err, userId, foundUser);
+                        callback(err, userId, foundUser.facebook.toObject());
                     });
                 } else {
                     callback('Invalid credentials');

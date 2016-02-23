@@ -7,35 +7,41 @@ import style from './style.css'
 import deepstream from 'deepstream.io-client-js'
 import Cookie from 'js-cookie'
 
-const ds = deepstream( 'localhost:6020' )
+function containsObjectId(objId, list) {
+    var i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i] === objId) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 class App extends Component {
   componentWillMount() {
     const { dispatch } = this.props
     const sid = Cookie.get('imsg-sess')
-    ds.login({ sid: sid })
+    App.ds.login({ sid: sid }, function (success, errorCode, userObj) {
+        var usersList = App.ds.record.getList('users')
+        usersList.subscribe(function onUsersChange(users) {
+            var userEntries = usersList.getEntries()
+            console.log('List of users is now', userEntries)
+        });
 
-    var usersList = ds.record.getList('users')
-    usersList.subscribe(function onUsersChange(users) {
-        console.log('List of users is now', usersList.getEntries())
-    });
+        var recordName = 'users/' + userObj.id
+        var userRecord = App.ds.record.getRecord(recordName)
+        userRecord.set(userObj)
 
-    usersList.whenReady( function onUsersListReady() {
-        var initialUsers = []
-        var userEntries = usersList.getEntries()
+        usersList.whenReady( function onUsersListReady() {
+            var userEntries = usersList.getEntries()
 
-        if (userEntries.indexOf(sid) === -1) {
-            usersList.addEntry(sid)
-        }
-        dispatch(UsersActions.updateUserList(userEntries))
-
-        userEntries.forEach( function (userId) {
-            var user = ds.record.getRecord(userId)
-            user.whenReady( function onUserReady() {
-                initialUsers.push(user.get())
-            });
-        })
-     })
+            if (!containsObjectId(recordName, userEntries)) {
+                usersList.addEntry(recordName)
+            }
+            dispatch(UsersActions.updateUserList(userEntries))
+         })
+    })
 
     /*
     var conversations = ds.record.getList('user/'+uid+'/conversations')
@@ -53,6 +59,10 @@ class App extends Component {
       </div>
     )
   }
+}
+
+if (!App.ds) {
+  App.ds = deepstream('localhost:6020')
 }
 
 export default connect()(App)

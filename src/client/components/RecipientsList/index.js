@@ -16,7 +16,6 @@ class RecipientsList extends Component {
   render() {
     const { users, visible } = this.props
     var items = []
-    debugger;
     for (let index in users) {
       items.push(<li key={index}><RecipientsListItem user={users[index]} /></li>)
     }

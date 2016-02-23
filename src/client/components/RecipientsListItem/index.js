@@ -1,14 +1,16 @@
 
 import React, { Component } from 'react'
 import style from './style.css'
+import deepstream from 'deepstream.io-client-js'
+import App from '../../containers/App'
 
 class RecipientsListItem extends Component {
   render() {
     const { user } = this.props
-        debugger;
+    const userRecord = App.ds.record.getRecord(user).get()
     return (
       <div className={style.listItem}>
-        <h3>{user}</h3>
+        <h3>{userRecord.name}</h3>
       </div>
     )
   }
