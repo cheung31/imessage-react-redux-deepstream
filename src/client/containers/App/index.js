@@ -18,6 +18,10 @@ function containsObjectId(objId, list) {
     return false;
 }
 
+function onUsersListChange(users) {
+
+}
+
 class App extends Component {
   componentWillMount() {
     const { dispatch } = this.props
@@ -27,6 +31,11 @@ class App extends Component {
         usersList.subscribe(function onUsersChange(users) {
             var userEntries = usersList.getEntries()
             console.log('List of users is now', userEntries)
+
+            if (!containsObjectId(recordName, userEntries)) {
+                usersList.addEntry(recordName)
+            }
+            dispatch(UsersActions.updateUserList(userEntries))
         });
 
         var recordName = 'users/' + userObj.username
@@ -34,12 +43,7 @@ class App extends Component {
         userRecord.set(userObj)
 
         usersList.whenReady( function onUsersListReady() {
-            var userEntries = usersList.getEntries()
-
-            if (!containsObjectId(recordName, userEntries)) {
-                usersList.addEntry(recordName)
-            }
-            dispatch(UsersActions.updateUserList(userEntries))
+            onUsersListChange(usersList)
          })
     })
 

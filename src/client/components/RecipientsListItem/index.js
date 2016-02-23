@@ -9,9 +9,9 @@ class RecipientsListItem extends Component {
     const { user } = this.props
     const userRecord = App.ds.record.getRecord(user).get()
     return (
-      <div className={style.listItem}>
+      <li className={style.recipientsListItem}>
         <h3>{userRecord.username}</h3>
-      </div>
+      </li>
     )
   }
 }
