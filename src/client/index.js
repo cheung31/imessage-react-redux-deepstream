@@ -13,12 +13,6 @@ import configure from './store'
 
 const ds = deepstream( 'localhost:6020' )
 const sid = Cookie.get('imsg-sess')
-ds.login({ sid: sid })
-
-var usersList = ds.record.getList('users')
-usersList.subscribe(function onUsersChange(users) {
-    console.log('List of users is now', usersList.getEntries())
-});
 
 /*
 var conversations = ds.record.getList('user/'+uid+'/conversations')

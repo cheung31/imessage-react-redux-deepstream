@@ -4,7 +4,7 @@ module.exports = function (app, passport) {
 
     // route for chat app
     app.get('/', isLoggedIn, function (req, res) {
-        res.sendFile(path.join(__dirname, '../client/index.html'));
+        res.redirect('localhost:3000/new');
     });
 
     // login page
@@ -18,7 +18,7 @@ module.exports = function (app, passport) {
     // handle the callback after facebook has authenticated the user
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect : '/',
+            successRedirect : 'localhost:3000/new',
             failureRedirect : '/login'
         })
     );
