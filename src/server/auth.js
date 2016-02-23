@@ -4,10 +4,11 @@ var app      = express();
 var port     = process.env.PORT || 8001;
 var mongoose = require('mongoose');
 var passport = require('passport');
-var flash = require('connect-flash');
+var cookieParser = require('cookie-parser');
+var cookieSession = require('cookie-session');
+var flash    = require('connect-flash');
 
 var morgan       = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
 var mongoStore = require('connect-mongo')(session);
@@ -27,16 +28,28 @@ var authServer = {
 
         // set up our express application
         app.use(morgan('dev')); // log every request to the console
-        app.use(cookieParser());
         app.use(bodyParser()); // get information from html forms
 
-        app.set('view engine', 'ejs'); // set up ejs for templating
+        app.set('view engine', 'ejs'); // set up jade for templating
 
         // required for passport
-        app.use(session({ secret: 'ch4t5evar', resave: false, saveUninitialized: false })); 
+        app.use(cookieParser()); 
+        app.use(cookieSession({
+            key: 'imsg-sess',
+            secret: cookieSecret,
+            httpOnly: false
+        }));
+        app.use(function (req, res, next) {
+            console.log(req.session);
+            console.log(req.cookies);
+            console.log(req.signedCookies);
+            next();
+        });
+        
+        // use passport session
         app.use(passport.initialize());
         app.use(passport.session());
-        app.use(flash());
+        app.use(flash()); // use connect-flash for flash messages stored in session
 
         // routes ======================================================================
         require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport

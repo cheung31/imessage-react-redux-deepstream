@@ -29,7 +29,7 @@ class App extends Component {
             console.log('List of users is now', userEntries)
         });
 
-        var recordName = 'users/' + userObj.id
+        var recordName = 'users/' + userObj.username
         var userRecord = App.ds.record.getRecord(recordName)
         userRecord.set(userObj)
 
