@@ -1,7 +1,11 @@
 
 # iMsg
 
-> An iMessage-like web-based messaging client
+> An iMessage-like web-based messaging client built with:
+* React
+* Redux
+* Deepstream.io
+* Express + Passport.js
 
 ## Component Tree
 ```
@@ -27,6 +31,24 @@ App
            |_ TypingIndicator
       |_ ConversationInput
 ```
+
+## Records
+* User
+* Conversation
+* Message
+* Users (Online + Previously Connected) - `users`
+* User's Conversations - `users/<id>/conversations`
+* Conversation Messages - `conversations/<id>/messages`
+
+## UI State
+* Selected Conversation
+* User's Conversations
+ * Conversation Messages
+* Message Draft
+ * Selected Recipients
+ * Available Recipients
+ * Body
+
 
 ## Dependencies
 ### Server-side
