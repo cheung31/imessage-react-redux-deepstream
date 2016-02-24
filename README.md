@@ -44,6 +44,7 @@ App
 * Selected Conversation
 * User's Conversations
  * Conversation Messages
+* Recipients List Visibility
 * Message Draft
  * Selected Recipients
  * Available Recipients
