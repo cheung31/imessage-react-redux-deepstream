@@ -51,9 +51,6 @@ App
 
 
 ## Dependencies
-### Server-side
-- [x] [Deepstream.io](https://deepstream.io)
-
 ### Client-side
 As seen in [frontend-boilerplate](https://github.com/tj/frontend-boilerplate):
 - [x] [Webpack](https://webpack.github.io)
@@ -66,6 +63,11 @@ As seen in [frontend-boilerplate](https://github.com/tj/frontend-boilerplate):
 - [x] [Rucksack](http://simplaio.github.io/rucksack/docs)
 - [x] [React Router Redux](https://github.com/rackt/react-router-redux)
 - [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
+
+### Server-side
+- [x] [Deepstream.io](https://deepstream.io)
+- [x] [Express](http://expressjs.com/)
+- [x] [Passport](http://passportjs.org/)
 
 ## Setup
 ```
