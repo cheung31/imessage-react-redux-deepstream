@@ -8,18 +8,26 @@ const initialState = {
 }
 
 export default handleActions({
+  'new draft' (state, action) {
+    return  {
+        recipients: [],
+        body: ''
+    }
+  },
+
   'add recipient' (state, action) {
     return {
         recipients: [...state.recipients, action.payload],
-        availableRecipients: [...state.availableRecipients],
         body: state.body
     }
+  },
+
+  'remove recipient' (state, action) {
   },
 
   'add body' (state, action) {
     return {
         recipients: [...state.recipients],
-        availableRecipients: [...state.availableRecipients],
         body: action.payload
     }
   }

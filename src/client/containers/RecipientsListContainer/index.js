@@ -9,9 +9,15 @@ import style from './style.css'
 
 class RecipientsListContainer extends Component {
   render() {
-    const { users, showRecipientsList } = this.props
+    const { users, selectedRecipients, showRecipientsList } = this.props
+    var availableRecipients = users.filter(function (userRecordName) {
+        var username = userRecordName.split('/')[1]
+        if (username && selectedRecipients.indexOf(username) === -1) {
+            return userRecordName
+        } 
+    })
     return (
-      <RecipientsList users={users} visible={showRecipientsList} />
+      <RecipientsList users={availableRecipients} visible={showRecipientsList} />
     )
   }
 }
@@ -19,6 +25,7 @@ class RecipientsListContainer extends Component {
 function mapStateToProps(state) {
   return {
     users: state.users,
+    selectedRecipients: state.draft.recipients,
     showRecipientsList: state.recipientsList
   }
 }
