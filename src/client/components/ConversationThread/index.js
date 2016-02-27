@@ -8,7 +8,9 @@ import style from './style.css'
 class ConversationThread extends Component {
   componentDidMount() {
     window.addEventListener('load', function(event) {
-      this.threadList.scrollTop = this.threadList.scrollHeight; 
+      setTimeout(function () {
+      this.threadList.scrollTop = this.threadList.scrollHeight * 2; 
+      }.bind(this), 750);
     }.bind(this));
   }
 

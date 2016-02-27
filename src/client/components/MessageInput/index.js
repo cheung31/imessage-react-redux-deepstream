@@ -27,14 +27,34 @@ class MessageInput extends Component {
 
     var messageBody = e.target.value
     //actions.addMessageBody(messageBody)
-    dispatch(DraftActions.sendNewDraft(messageBody))
+    if (messageBody) {
+        dispatch(DraftActions.sendNewDraft(messageBody))
+    }
+  }
+
+  onSendClick(e) {
+    e.preventDefault()
+    const { dispatch, draft } = this.props
+
+    // If no recipients, no-op
+    //debugger;
+    //if (draft.recipients.length == 0) {
+    //    console.log('Message has no recipients!')
+    //    return
+    //}
+
+    var messageBody = e.target.value
+    //actions.addMessageBody(messageBody)
+    if (messageBody) {
+        dispatch(DraftActions.sendNewDraft(messageBody))
+    }
   }
 
   render() {
     return (
       <div className={style.messageInput}>
         <textarea placeholder="Enter a message..." rows="1" onKeyPress={this.onKeyPress.bind(this)} ></textarea>
-        <a href="#" className={style.button}>Send</a>
+        <a href="#" className={style.button} onClick={this.onSendClick}>Send</a>
       </div>
     )
   }

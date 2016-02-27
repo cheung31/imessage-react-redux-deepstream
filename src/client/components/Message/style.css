@@ -1,8 +1,8 @@
 .message {
-    background-color: blue;
+    background-color: rgb(20,111,246);
     color: #FFF;
     border-radius: 15px;
     height: initial;
-    padding: .5em 1em;
+    padding: .3em .75em;
     border: none;
 }
