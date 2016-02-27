@@ -11,8 +11,7 @@ class RecipientsListContainer extends Component {
   render() {
     const { users, selectedRecipients, showRecipientsList } = this.props
     var availableRecipients = users.filter(function (userRecordName) {
-        var username = userRecordName.split('/')[1]
-        if (username && selectedRecipients.indexOf(username) === -1) {
+        if (userRecordName && selectedRecipients.indexOf(userRecordName) === -1) {
             return userRecordName
         } 
     })

@@ -33,6 +33,7 @@
     "react-router-redux": "^2.1.0",
     "redux": "^3.0.2",
     "redux-actions": "^0.9.0",
+    "redux-thunk": "1.0.3",
     "rucksack-css": "^0.8.5",
     "style-loader": "^0.12.4",
     "webpack": "^1.12.2",

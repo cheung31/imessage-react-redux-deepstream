@@ -6,17 +6,21 @@ import Message from '../Message'
 import style from './style.css'
 
 class ConversationThread extends Component {
+  componentDidMount() {
+    window.addEventListener('load', function(event) {
+      this.threadList.scrollTop = this.threadList.scrollHeight; 
+    }.bind(this));
+  }
+
   render() {
     const { conversation, onSendMessage, onReceivedMessage, onReadMessage, onStartTyping } = this.props
-    var messages = []
-    for (let message in conversation.messages) {
-      messages.push(<Message message={message} />)
+    var messages = [<li className={style.listPadder}></li>]
+    for (let index in conversation.messages) {
+      messages.unshift(<Message key={index} message={conversation.messages[index]} />)
     }
-        //<MessageStatus onSendMessage={onSendMessage} onReadMessage={onReadMessage} />
-        //<TypingIndicator onStartTyping={onStartTyping} />
     return (
       <div className={style.threadContainer}>
-        <ul>{messages}</ul>
+        <ul ref={(c) => this.threadList = c}>{messages}</ul>
       </div>
     )
   }

@@ -17,6 +17,7 @@ class RecipientsList extends Component {
     const { users, visible } = this.props
     var items = []
     for (let index in users) {
+        console.log('available: ', users[index]);
       items.push(<RecipientsListItem key={index} user={users[index]} />)
     }
     return (

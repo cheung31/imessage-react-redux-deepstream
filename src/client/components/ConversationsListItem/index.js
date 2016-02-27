@@ -7,8 +7,8 @@ class ConversationListItem extends Component {
     const { conversation } = this.props
     return (
       <div className={style.listItem}>
-        <h3>{conversation.title}</h3>
-        <span>{conversation.body || ''}</span>
+        <h3>{conversation ? conversation.title : 'ugh'}</h3>
+        <span>{conversation ? conversation.lastMessage : ''}</span>
       </div>
     )
   }

@@ -9,20 +9,34 @@ const initialState = {
 
 export default handleActions({
   'add conversation' (state, action) {
-    var selectedConversation = 0
-    var conversationId = state.conversations.reduce((maxId, conversation) => Math.max(conversation.id, maxId), -1) + 1
-    var conversation = {
-      id: conversationId,
-      title: action.payload.title
-    }
-    var conversations = [conversation, ...state]
-    var conversationsById = Object.assign({}, state.conversations.conversationsById)
-    conversationsById[conversationId] = conversation
+    var selectedConversation = action.payload.id
+    var conversation = action.payload
+    conversation.title = action.payload.title || (conversation.participants ? conversation.participants.map(function (participant) {
+        return participant.split('/')[1]
+    }).join(', ') : 'New Message')
+console.log('~~~~~~~', conversation)
+    var conversations = [conversation.id, ...state.conversations]
+    var conversationsById = Object.assign({}, state.conversationsById)
+    conversationsById[action.payload.id] = conversation
 
     return Object.assign({}, state, {
       selectedConversation: selectedConversation,
       conversations: conversations,
       conversationsById: conversationsById
+    })
+  },
+
+  'add message' (state, action) {
+    var conversationsById = Object.assign({}, state.conversationsById)
+    conversationsById[action.payload.conversationId].messages = [action.payload, ...state.conversationsById[action.payload.conversationId]]
+    return Object.assign({}, state, {
+      conversationsById: conversationsById 
+    })
+  },
+
+  'update conversation list' (state, action) {
+    return Object.assign({}, state, {
+      conversations: [...action.payload]
     })
   }
 }, initialState)

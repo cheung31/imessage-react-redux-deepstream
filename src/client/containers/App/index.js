@@ -6,6 +6,8 @@ import * as UsersActions from '../../actions/users'
 import style from './style.css'
 import deepstream from 'deepstream.io-client-js'
 import Cookie from 'js-cookie'
+import * as ProfileActions from '../../actions/profile'
+import * as ConversationActions from '../../actions/conversations'
 
 function containsObjectId(objId, list) {
     var i;
@@ -18,41 +20,43 @@ function containsObjectId(objId, list) {
     return false;
 }
 
-function onUsersListChange(users) {
-
-}
-
 class App extends Component {
   componentWillMount() {
     const { dispatch } = this.props
     const sid = Cookie.get('imsg-sess')
     App.ds.login({ sid: sid }, function (success, errorCode, userObj) {
-        var usersList = App.ds.record.getList('users')
-        usersList.subscribe(function onUsersChange(users) {
-            var userEntries = usersList.getEntries()
-            console.log('List of users is now', userEntries)
-
-            if (!containsObjectId(recordName, userEntries)) {
-                usersList.addEntry(recordName)
-            }
-            dispatch(UsersActions.updateUserList(userEntries))
-        });
-
-        var recordName = 'users/' + userObj.username
-        var userRecord = App.ds.record.getRecord(recordName)
+        var userId = 'users/' + userObj.username
+        console.log('<<< userId', userId)
+        var userRecord = App.ds.record.getRecord(userId)
         userRecord.set(userObj)
+        dispatch(ProfileActions.setUsername(userObj.username))
 
-        usersList.whenReady( function onUsersListReady() {
-            onUsersListChange(usersList)
-         })
+        var usersList = App.ds.record.getList('users')
+        usersList.subscribe(function onUsersChange(updatedUsersList) {
+            console.log('List of users is now', updatedUsersList)
+
+            if (!containsObjectId(userId, updatedUsersList)) {
+                usersList.addEntry(userId)
+            }
+            dispatch(UsersActions.updateUserList(updatedUsersList))
+        })
+
+        var conversationListId = userId + '/conversations'
+        console.log('<<< conversationListId', conversationListId)
+        var conversations = App.ds.record.getList(conversationListId)
+        conversations.subscribe(function onConversationsChange(updatedConversations) {
+            console.log( 'List of my conversations is now', updatedConversations )
+            dispatch(ConversationActions.updateConversationList(updatedConversations))
+
+            updatedConversations.forEach( function( id ) {
+                var conversationRecord = App.ds.record.getRecord( id );
+                conversationRecord.whenReady( function () {
+                    var conversationObj = conversationRecord.get()
+                    dispatch(ConversationActions.addConversation(conversationObj))
+                });
+            })
+        })
     })
-
-    /*
-    var conversations = ds.record.getList('user/'+uid+'/conversations')
-    conversations.subscribe(function onConversationsChange(conversations) {
-        console.log( 'List of my conversations is now', conversations.getEntries() )
-    });
-    */
   }
 
   render() {

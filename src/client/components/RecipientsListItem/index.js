@@ -19,8 +19,8 @@ class RecipientsListItem extends Component {
   componentDidMount() {
     const { user } = this.props
     this.record = App.ds.record.getRecord(user);
-    this.record.subscribe( function( data ) {
-        this.setState( data );
+    this.record.whenReady( function() {
+        this.setState(this.record.get() );
     }.bind( this ));
   }
 

@@ -17,7 +17,7 @@ export default handleActions({
 
   'add recipient' (state, action) {
     return {
-        recipients: [...state.recipients, action.payload],
+        recipients: [...state.recipients, 'users/'+action.payload],
         body: state.body
     }
   },
@@ -25,7 +25,7 @@ export default handleActions({
   'remove recipient' (state, action) {
   },
 
-  'add body' (state, action) {
+  'add message body' (state, action) {
     return {
         recipients: [...state.recipients],
         body: action.payload

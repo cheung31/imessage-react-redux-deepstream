@@ -8,10 +8,10 @@ class ConversationsList extends Component {
     const { selectedConversation, conversations, conversationsById, onConversationClick } = this.props
     var items = []
     for (let index in conversations) {
-      items.push(<li key={index} className={selectedConversation == index ? style.selectedListItem : ''}><ConversationsListItem conversation={conversations[index]} /></li>)
+      items.push(<li key={index} className={selectedConversation == conversations[index] ? style.selectedListItem : ''}><ConversationsListItem conversation={conversationsById[conversations[index]]} /></li>)
     }
     return (
-      <ul>{items}</ul>
+      <ul className={style.conversationsList}>{items}</ul>
     )
   }
 }
