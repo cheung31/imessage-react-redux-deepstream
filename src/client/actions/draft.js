@@ -30,45 +30,52 @@ export function sendDraft(body) {
         var conversationId = 'conversations/' + new Buffer(JSON.stringify(participants)).toString('base64')
         var existingConversation = conversations.conversationsById[conversationId]
         var conversationRecord = App.ds.record.getRecord(conversationId) 
-        var conversationObj = {
-            id: conversationId,
-            participants: participants,
-            lastMessage: body
-        }
-        // If new conversation, assign message array
-        conversationObj.messages = [messageId]
-        // Otherwise, append messageId
-        conversationRecord.set(conversationObj)
-
-        // Add conversation to participant conv lists
-        for (let index in participants) {
-            var listId = participants[index] + '/conversations'
-            var participantConversationList = App.ds.record.getList(listId)
-            participantConversationList.whenReady(function () {
-                var entries = participantConversationList.getEntries()
-                if (entries.indexOf(conversationId) == -1) {
-                    debugger;
-                    participantConversationList.addEntry(conversationId)
+        conversationRecord.whenReady(function () {
+            var conv = conversationRecord.get()
+            const isNewConv = !conv || !conv.messages || conv.messages.length == 0
+            if (isNewConv) {
+                // If new conversation, assign message array
+                var conversationObj = {
+                    id: conversationId,
+                    participants: participants,
+                    lastMessage: body,
+                    messages: [messageId]
                 }
-            })
-        }
+                conversationRecord.set(conversationObj)
 
-        // Add conversation to store
-        if (!conversations.conversationsById.hasOwnProperty(conversationId)) {
-            dispatch(ConversationActions.addConversation({
-                id: conversationId,
-                participants: participants,
-                lastMessage: body
-            }))
-        }
+                // Add conversation to store
+                if (!conversations.conversationsById.hasOwnProperty(conversationId)) {
+                    dispatch(ConversationActions.addConversation(conversationObj))
+                }
+            } else {
+                // Otherwise, append messageId
+                var messagesList = [messageId, ...conv.messages]
+                conversationRecord.set('messages', messagesList)
+                conversationRecord.set('lastMessage', body)
+            }
 
-        // Add message to store
-        dispatch(ConversationActions.addMessage(Object.assign({
-            conversationId: conversationId
-        }, messageObj )))
+            // Add message to store
+            dispatch(ConversationActions.addMessage(Object.assign({
+                conversationId: conversationId
+            }, messageObj )))
 
-        // If new conversation, navigate to conversation
-        browserHistory.push('/' + conversationId)
+            // Add conversation to participant conv lists
+            for (let index in participants) {
+                var listId = participants[index] + '/conversations'
+                var participantConversationList = App.ds.record.getList(listId)
+                participantConversationList.whenReady(function () {
+                    var entries = participantConversationList.getEntries()
+                    if (entries.indexOf(conversationId) == -1) {
+                        participantConversationList.addEntry(conversationId)
+                    }
+                })
+            }
+
+            if (isNewConv) {
+                // If new conversation, navigate to conversation
+                browserHistory.push('/' + conversationId)
+            }
+        })
 
         //dispatch(clearDraft())
     }

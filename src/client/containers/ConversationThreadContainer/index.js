@@ -35,7 +35,7 @@ class ConversationThreadContainer extends Component {
     var conv = conversationsById[selectedConversation] || conversation
     return (
       <div>
-          <ConversationHeader titleLabel={conv ? conv.title : 'FUCK'} />
+          <ConversationHeader titleLabel={conv ? conv.title : ''} />
           <MessageRecipients/>
           <RecipientsListContainer visible={showRecipientsList} />
           <ConversationThread

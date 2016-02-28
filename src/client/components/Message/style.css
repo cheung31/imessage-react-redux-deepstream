@@ -11,9 +11,10 @@
     clear: both;
     background-color: #E5E5EA;
     color: #111;
-    border-radius: 15px;
+    border-radius: 13px;
     height: initial;
     padding: .3em .75em;
+    margin-top: 3px;
     border: none;
 }
 
@@ -24,8 +25,9 @@
     clear: both;
     background-color: rgb(20,111,246);
     color: #FFF;
-    border-radius: 15px;
+    border-radius: 13px;
     height: initial;
     padding: .3em .75em;
+    margin-top: 3px;
     border: none;
 }

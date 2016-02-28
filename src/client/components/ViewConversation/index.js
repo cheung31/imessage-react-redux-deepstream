@@ -2,6 +2,8 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
+
 import Conversations from '../../components/Conversations'
 import Conversation from '../../components/Conversation'
 import * as SelectedConversationActions from '../../actions/selectedConversation'
@@ -11,7 +13,7 @@ import style from './style.css'
 
 class ViewConversation extends Component {
   componentWillMount() {
-    const { params } = this.props
+    const { params, conversationsById} = this.props
     const selectedConversation = 'conversations/'+params.conversationId
     this.setState({
       selectedConversation: selectedConversation

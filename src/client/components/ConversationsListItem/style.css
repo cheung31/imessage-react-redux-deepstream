@@ -7,3 +7,10 @@ h3 {
     color: #111;
     margin-bottom: 0;
 }
+
+.listDescription {
+    display: inline-block;
+    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}

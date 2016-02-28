@@ -11,8 +11,8 @@ class ConversationListItem extends Component {
     const { conversation } = this.props
     return (
       <Link className={style.listItem} to={conversation ? '/'+conversation.id : '/'}>
-        <h3>{conversation ? conversation.title : 'ugh'}</h3>
-        <span>{conversation ? conversation.lastMessage : ''}</span>
+        <h3>{conversation ? conversation.title : ''}</h3>
+        <span className={style.listDescription}>{conversation ? conversation.lastMessage : ''}</span>
       </Link>
     )
   }
