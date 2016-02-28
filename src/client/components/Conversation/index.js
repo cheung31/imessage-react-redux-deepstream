@@ -8,7 +8,7 @@ class Conversation extends Component {
     const { conversation } = this.props
     return (
       <section className={style.conversation}>
-        <ConversationThreadContainer />
+        <ConversationThreadContainer conversation={conversation}/>
       </section>
     )
   }

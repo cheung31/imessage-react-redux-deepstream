@@ -12,7 +12,6 @@ class Message extends Component {
     this.record = App.ds.record.getRecord(message);
     this.record.whenReady( function() {
         this.setState(this.record.get() );
-        console.log(this.state.body);
     }.bind( this ));   
   }
 

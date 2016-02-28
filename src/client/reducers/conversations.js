@@ -2,7 +2,6 @@
 import { handleActions } from 'redux-actions'
 
 const initialState = {
-    selectedConversation: 0,
     conversations: [],
     conversationsById: {}
 }
@@ -15,7 +14,6 @@ export default handleActions({
   },
 
   'add conversation' (state, action) {
-    var selectedConversation = action.payload.id
     var conversation = action.payload
     conversation.title = action.payload.title || (conversation.participants ? conversation.participants.map(function (participant) {
         return participant.split('/')[1]
@@ -26,7 +24,6 @@ console.log('~~~~~~~', conversation)
     conversationsById[action.payload.id] = conversation
 
     return Object.assign({}, state, {
-      selectedConversation: selectedConversation,
       conversations: conversations,
       conversationsById: conversationsById
     })

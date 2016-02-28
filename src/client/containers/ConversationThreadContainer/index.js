@@ -13,13 +13,11 @@ import style from './style.css'
 
 class ConversationThreadContainer extends Component {
   render() {
-    const { selectedConversation, conversationsById, showRecipientsList, actions } = this.props
-    const conversation = conversationsById && conversationsById[selectedConversation] ? conversationsById[selectedConversation] : {}
-    console.log(selectedConversation);
-    console.log(conversation.messages);
+    const { conversation, selectedConversation, conversationsById, showRecipientsList, actions } = this.props
+    console.log('SELECTED CONVERSATION: ', selectedConversation);
     return (
       <div>
-          <ConversationHeader titleLabel={conversation.title} />
+          <ConversationHeader titleLabel={conversation ? conversation.title : 'FUCK'} />
           <MessageRecipients />
           <RecipientsListContainer visible={showRecipientsList} />
           <ConversationThread
@@ -37,7 +35,7 @@ class ConversationThreadContainer extends Component {
 function mapStateToProps(state) {
   var conversationsState = state.conversations
   return {
-    selectedConversation: conversationsState.selectedConversation,
+    selectedConversation: state.selectedConversation,
     conversationsById: conversationsState.conversationsById,
     showRecipientsList: state.recipientsList
   }

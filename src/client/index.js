@@ -6,7 +6,7 @@ import React from 'react'
 
 import App from './containers/App'
 import NewConversation from './components/NewConversation'
-//import ViewConversation from './components/ViewConversation'
+import ViewConversation from './components/ViewConversation'
 import configure from './store'
 
 var store = configure()
@@ -15,6 +15,7 @@ ReactDOM.render(
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <Route path="new" component={NewConversation}/>
+        <Route path="conversations/:conversationId" component={ViewConversation}/>
       </Route>
     </Router>
   </Provider>,

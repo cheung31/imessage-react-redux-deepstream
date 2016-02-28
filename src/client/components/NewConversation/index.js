@@ -9,7 +9,7 @@ import App from '../../containers/App'
 import style from './style.css'
 
 class NewConversation extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch } = this.props
     var anonymousConversation = App.ds.record.getAnonymousRecord()
     dispatch(ConversationActions.addConversation({
@@ -18,11 +18,10 @@ class NewConversation extends Component {
   }
 
   render() {
-    const { conversation, conversations } = this.props
     return (
       <div>
-        <Conversations conversations={conversations} />
-        <Conversation conversation={conversation} />
+        <Conversations/>
+        <Conversation/>
       </div>
     )
   }
