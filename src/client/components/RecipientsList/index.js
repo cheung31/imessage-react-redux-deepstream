@@ -14,11 +14,12 @@ class RecipientsList extends Component {
   }
 
   render() {
-    const { users, visible } = this.props
+    const { users, profile, visible } = this.props
     var items = []
     for (let index in users) {
-        console.log('available: ', users[index]);
-      items.push(<RecipientsListItem key={index} user={users[index]} />)
+        if (users[index] !== 'users/'+profile.username) {
+            items.push(<RecipientsListItem key={index} user={users[index]} />)
+        }
     }
     return (
       <div className={[visible ? style.recipientsListVisible : style.recipientsList, style.animate].join(' ')}>
@@ -34,4 +35,10 @@ class RecipientsList extends Component {
   }
 }
 
-export default connect()(RecipientsList)
+function mapStateToProps(state) {
+    return {
+        profile: state.profile
+    }
+}
+
+export default connect(mapStateToProps)(RecipientsList)

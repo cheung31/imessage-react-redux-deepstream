@@ -7,8 +7,10 @@ class ConversationsList extends Component {
   render() {
     const { selectedConversation, conversations, conversationsById, onConversationClick } = this.props
     var items = []
+    console.log('<<<<<<<<<<<<<<<', conversations);
     for (let index in conversations) {
-      items.push(<li key={index} className={selectedConversation == conversations[index] ? style.selectedListItem : ''}><ConversationsListItem conversation={conversationsById[conversations[index]]} /></li>)
+      var conversationId = conversations[index]
+      items.push(<li key={conversationId} className={selectedConversation == conversationId ? style.selectedListItem : ''}><ConversationsListItem conversation={conversationsById[conversationId]} /></li>)
     }
     return (
       <ul className={style.conversationsList}>{items}</ul>

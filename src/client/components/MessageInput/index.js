@@ -26,7 +26,6 @@ class MessageInput extends Component {
     //}
 
     var messageBody = e.target.value
-    //actions.addMessageBody(messageBody)
     if (messageBody) {
         dispatch(DraftActions.sendNewDraft(messageBody))
     }
@@ -37,11 +36,10 @@ class MessageInput extends Component {
     const { dispatch, draft } = this.props
 
     // If no recipients, no-op
-    //debugger;
-    //if (draft.recipients.length == 0) {
-    //    console.log('Message has no recipients!')
-    //    return
-    //}
+    if (draft.recipients.length == 0) {
+        console.log('Message has no recipients!')
+        return
+    }
 
     var messageBody = e.target.value
     //actions.addMessageBody(messageBody)

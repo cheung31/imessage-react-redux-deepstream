@@ -1,4 +1,5 @@
 .listItem {
+    display: block;
     overflow: hidden;
 }
 

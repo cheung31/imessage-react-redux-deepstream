@@ -18,10 +18,12 @@ export default handleActions({
     conversation.title = action.payload.title || (conversation.participants ? conversation.participants.map(function (participant) {
         return participant.split('/')[1]
     }).join(', ') : 'New Message')
-console.log('~~~~~~~', conversation)
-    var conversations = [conversation.id, ...state.conversations]
+    var conversations = [...state.conversations]
+    if (conversations.indexOf(conversation.id) == -1) {
+        conversations.unshift(conversation.id)
+    }
     var conversationsById = Object.assign({}, state.conversationsById)
-    conversationsById[action.payload.id] = conversation
+    conversationsById[conversation.id] = conversation
 
     return Object.assign({}, state, {
       conversations: conversations,
