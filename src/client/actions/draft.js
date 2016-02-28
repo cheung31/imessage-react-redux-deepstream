@@ -16,6 +16,7 @@ export function sendNewDraft(body) {
         var messageRecord = App.ds.record.getRecord(messageId)
         var authorId = 'users/' + profile.username
         var messageObj = {
+            id: messageId,
             author: authorId,
             body: body,
             time: Date.now()
@@ -24,8 +25,6 @@ export function sendNewDraft(body) {
 
         var participants = [...draft.recipients, authorId].sort()
         var conversationId = 'conversations/' + new Buffer(JSON.stringify(participants)).toString('base64')
-console.log('<<<< participants', participants);
-console.log('<<<< conversationId', conversationId);
         var conversationRecord = App.ds.record.getRecord(conversationId) 
         var conversationObj = {
             id: conversationId,

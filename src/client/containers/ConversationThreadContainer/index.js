@@ -15,6 +15,8 @@ class ConversationThreadContainer extends Component {
   render() {
     const { selectedConversation, conversationsById, showRecipientsList, actions } = this.props
     const conversation = conversationsById && conversationsById[selectedConversation] ? conversationsById[selectedConversation] : {}
+    console.log(selectedConversation);
+    console.log(conversation.messages);
     return (
       <div>
           <ConversationHeader titleLabel={conversation.title} />

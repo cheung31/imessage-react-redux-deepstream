@@ -8,6 +8,12 @@ const initialState = {
 }
 
 export default handleActions({
+  'view conversation' (state, action) {
+    return Object.assign({}, state, {
+        selectedConversation: action.payload
+    })
+  },
+
   'add conversation' (state, action) {
     var selectedConversation = action.payload.id
     var conversation = action.payload

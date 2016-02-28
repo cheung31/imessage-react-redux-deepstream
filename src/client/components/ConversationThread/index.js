@@ -16,9 +16,12 @@ class ConversationThread extends Component {
 
   render() {
     const { conversation, onSendMessage, onReceivedMessage, onReadMessage, onStartTyping } = this.props
+    console.log('<<< SHOWING THREAD: ', conversation.id);
+    console.log('<<< MESSAGES: ', conversation.messages);
     var messages = [<li className={style.listPadder}></li>]
     for (let index in conversation.messages) {
-      messages.unshift(<Message key={index} message={conversation.messages[index]} />)
+      var message = conversation.messages[index]
+      messages.push(<Message key={message} message={message} />)
     }
     return (
       <div className={style.threadContainer}>

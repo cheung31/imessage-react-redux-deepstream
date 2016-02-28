@@ -14,12 +14,12 @@
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 1em;
+    padding: 1em 2em 1em 1em;
     overflow-y: auto;
 }
 
 .threadContainer ul li {
-    display: table-caption;
+    display: block;
     border: none;
 }
 
