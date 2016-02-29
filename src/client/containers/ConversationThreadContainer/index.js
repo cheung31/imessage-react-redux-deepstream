@@ -13,7 +13,7 @@ import * as DraftActions from '../../actions/draft'
 import style from './style.css'
 
 class ConversationThreadContainer extends Component {
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
     const { draftActions, profile, conversation, selectedConversation, conversationsById, showRecipientsList, actions } = this.props
     var conv = conversationsById[selectedConversation] || conversation
     if (conv && conv.participants) {
@@ -24,6 +24,8 @@ class ConversationThreadContainer extends Component {
             return false
         })
         for (let userId of filtered) {
+            console.log('RECIPIENT:', conv.id, userId);
+            console.log(nextProps);
             draftActions.addRecipient(userId.split('/')[1])
         }
     }

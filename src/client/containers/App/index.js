@@ -29,7 +29,6 @@ class App extends Component {
         console.log('<<< userId', userId)
         var userRecord = App.ds.record.getRecord(userId)
         userRecord.set(userObj)
-        debugger;
         dispatch(ProfileActions.setUsername(userObj.username))
 
         var usersList = App.ds.record.getList('users')

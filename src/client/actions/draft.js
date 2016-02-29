@@ -77,6 +77,7 @@ export function sendDraft(body) {
             }
         })
 
+        //debugger;
         //dispatch(clearDraft())
     }
 }
