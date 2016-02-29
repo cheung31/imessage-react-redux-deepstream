@@ -1,5 +1,7 @@
 # TODO
 
+* Deploy to AWS via Elastic Beanstalk and a Mongo instance
+
 ## Tooling
 * Test suite
 * Linting
