@@ -12,7 +12,7 @@ function getTitleFromRecipients(recipients) {
 
 class MessageInput extends Component {
   onKeyPress(e) {
-    if (e.which != 13 || event.shiftKey) {
+    if (e.which != 13 || e.shiftKey) {
       return
     }
     e.preventDefault()

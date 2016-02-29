@@ -14,7 +14,7 @@ import style from './style.css'
 
 class ConversationThreadContainer extends Component {
   componentWillReceiveProps(nextProps) {
-    const { draftActions, profile, conversation, selectedConversation, conversationsById, showRecipientsList, actions } = this.props
+    const { draftActions, profile, conversation, selectedConversation, conversationsById, showRecipientsList, actions } = nextProps
     var conv = conversationsById[selectedConversation] || conversation
     if (conv && conv.participants) {
         var filtered = conv.participants.filter(function (participant) {
@@ -23,6 +23,7 @@ class ConversationThreadContainer extends Component {
             }
             return false
         })
+        draftActions.clearDraft()
         for (let userId of filtered) {
             console.log('RECIPIENT:', conv.id, userId);
             console.log(nextProps);

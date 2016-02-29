@@ -8,12 +8,13 @@ import App from '../../containers/App'
 import style from './style.css'
 
 class ConversationThread extends Component {
-  componentWillReceiveProps() {
-    const { profile, selectedConversation } = this.props
+  componentWillReceiveProps(nextProps) {
+    const { profile, selectedConversation } = nextProps
     if (profile.username && selectedConversation) {
         console.log("SUBSCRIBING TO: ", selectedConversation)
         this.conversationRecord = App.ds.record.getRecord(selectedConversation)
-        this.conversationRecord.subscribe('messages', function (messages) {
+        this.conversationRecord.whenReady(function () {
+          var messages = this.conversationRecord.get('messages')
           this.setState({ messages: messages })
         }.bind(this))
     }
@@ -32,6 +33,7 @@ class ConversationThread extends Component {
     if (!messages.length && conversation) {
         messages = conversation.messages
     }
+    console.log('~~~ b', messages.length);
     var messageItems = []
     if (conversation) {
         for (let index in messages) {

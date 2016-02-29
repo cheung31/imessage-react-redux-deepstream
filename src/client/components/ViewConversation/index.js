@@ -20,6 +20,14 @@ class ViewConversation extends Component {
     });
   }
 
+  componentDidMount() {
+    const { params, conversationsById} = this.props
+    const selectedConversation = 'conversations/'+params.conversationId
+    this.setState({
+      selectedConversation: selectedConversation
+    });
+  }
+
   componentWillReceiveProps(nextProps) {
     const { actions, draftActions, conversationsById } = this.props
     const selectedConversation = 'conversations/'+nextProps.params.conversationId

@@ -42,11 +42,6 @@ export function sendDraft(body) {
                     messages: [messageId]
                 }
                 conversationRecord.set(conversationObj)
-
-                // Add conversation to store
-                if (!conversations.conversationsById.hasOwnProperty(conversationId)) {
-                    dispatch(ConversationActions.addConversation(conversationObj))
-                }
             } else {
                 // Otherwise, append messageId
                 var messagesList = [...conv.messages, messageId]
@@ -78,6 +73,6 @@ export function sendDraft(body) {
         })
 
         //debugger;
-        //dispatch(clearDraft())
+        dispatch(clearDraft())
     }
 }
