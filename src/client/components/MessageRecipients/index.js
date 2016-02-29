@@ -21,10 +21,13 @@ class MessageRecipients extends Component {
           <a href="#" className={style.titleRightAction} onClick={this.onClickAddRecipient.bind(this)}>+</a>
     }
     const { recipients } = this.props
+    var recipientsPretty = recipients.map(function (recipient) {
+        return recipient.split('/')[1]
+    })
     return (
       <div className={style.messageRecipients}>
         <span className={style.toLabel}>To:</span>
-        <textarea row="1" value={recipients.join(', ')}></textarea> 
+        <textarea row="1" value={recipientsPretty.join(', ')}></textarea> 
         {addRecipientButton}
       </div>
     )
