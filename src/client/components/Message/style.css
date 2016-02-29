@@ -1,0 +1,33 @@
+.messageWrapper {
+    display: block;
+    width: 100%;
+    height: initial;
+}
+
+.message {
+    display: inline-block;
+    position: relative;
+    float: left;
+    clear: both;
+    background-color: #E5E5EA;
+    color: #111;
+    border-radius: 13px;
+    height: initial;
+    padding: .3em .75em;
+    margin-top: 3px;
+    border: none;
+}
+
+.messageRight {
+    display: inline-block;
+    position: relative;
+    float: right;
+    clear: both;
+    background-color: rgb(20,111,246);
+    color: #FFF;
+    border-radius: 13px;
+    height: initial;
+    padding: .3em .75em;
+    margin-top: 3px;
+    border: none;
+}

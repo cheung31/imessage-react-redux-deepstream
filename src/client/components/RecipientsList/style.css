@@ -1,0 +1,63 @@
+.animate {
+    -webkit-transition: top 0.3s ease-in;
+    -moz-transition: top 0.3s ease-in;
+    -ms-transition: top 0.3s ease-in;
+    -o-transition: top 0.3s ease-in;
+    transition: top 0.3s ease-in;
+}
+.recipientsList {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFF;
+}
+
+.recipientsListVisible {
+    position: absolute;
+    z-index: 10;
+    display: block;
+    top: 0px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FFF;
+}
+
+.header {
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+    height: 65px;
+    background-color: rgba(246,246,246, 0.95);
+    border-bottom: 1px solid rgb(207,207,207);
+}
+
+.recipientsList .title,
+.recipientsListVisible .title{
+    color: #111;
+    line-height: 65px;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.titleLabel {
+    display: inline-block; 
+    font-weight: bold;
+    text-align: center;
+}
+
+.titleRightAction {
+    display: inline-block;
+    position: absolute;
+    color: rgb(20,111,246);
+    text-decoration: none;
+    right: 10px;
+    width: 65px;
+    line-height: 65px;
+    height: 65px;
+    font-size: 1em;
+}

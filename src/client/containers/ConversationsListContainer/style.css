@@ -1,0 +1,11 @@
+.listView {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    bottom: 0;
+    background-color: #FFF;
+    padding: 0;
+    width: 339px;
+    margin: 0;
+    overflow-x: hidden;
+}

@@ -1,0 +1,42 @@
+.messageInput {
+    position: absolute;
+    display: flex;
+    height: 55px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #F5F5F3;
+}
+
+.messageInput textarea {
+    -webkit-box-flex: 1;
+    flex-grow: 1;
+    font-size: 14px;
+    text-indent: 8px;
+    resize: none;
+    color: rgba(0, 0, 0, 0.870588);
+    line-height: 30px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-color: rgb(250, 251, 252);
+    border-image-source: initial;
+    border-image-slice: initial;
+    border-image-width: initial;
+    border-image-outset: initial;
+    border-image-repeat: initial;
+    outline: none;
+    margin: 10px;
+    border: 1px solid rgb(228, 233, 236);
+    border-radius: 4px;
+}
+
+.button {
+    display: inline-block;
+    color: rgb(20,111,246);
+    text-decoration: none;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    font-size: 1.3em; 
+    font-weight: 700;
+}

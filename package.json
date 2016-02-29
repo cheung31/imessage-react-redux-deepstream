@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors --port 3000 & node server.js",
+    "start": "npm run start:express & npm run start:webpack",
+    "start:express": "node server.js",
+    "start:webpack": "webpack-dev-server --history-api-fallback --hot --inline --progress --colors --port 3000",
     "build": "NODE_ENV=production webpack --progress --colors"
   },
   "license": "MIT",
@@ -18,10 +20,10 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "babel-runtime": "^6.3.19",
-    "classnames": "^2.1.2",
     "css-loader": "^0.23.1",
-    "deepstream.io-client-js": "0.3.8",
+    "deepstream.io-client-js": "0.4.0",
     "file-loader": "^0.8.4",
+    "js-cookie": "2.1.0",
     "postcss-loader": "^0.8.0",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
@@ -31,10 +33,29 @@
     "react-router-redux": "^2.1.0",
     "redux": "^3.0.2",
     "redux-actions": "^0.9.0",
+    "redux-thunk": "1.0.3",
     "rucksack-css": "^0.8.5",
     "style-loader": "^0.12.4",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.0",
     "webpack-hot-middleware": "^2.2.0"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "1.15.0",
+    "connect-ensure-login": "0.1.1",
+    "connect-flash": "0.1.1",
+    "connect-mongo": "0.8.1",
+    "cookie-parser": "1.4.1",
+    "cookie-session": "1.2.0",
+    "deepstream.io": "0.8.0",
+    "ejs": "2.4.1",
+    "express": "4.13.4",
+    "express-session": "1.13.0",
+    "mongoose": "4.4.4",
+    "morgan": "1.7.0",
+    "passport": "0.3.2",
+    "passport-local": "1.0.0",
+    "session-file-store": "0.0.24"
   }
 }
