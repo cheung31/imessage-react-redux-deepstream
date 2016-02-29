@@ -12,24 +12,23 @@ function getTitleFromRecipients(recipients) {
 
 class MessageInput extends Component {
   onKeyPress(e) {
-    if (e.which != 13 || event.shiftKey) {
+    if (e.which != 13 || e.shiftKey) {
       return
     }
     e.preventDefault()
     const { dispatch, draft } = this.props
 
     // If no recipients, no-op
-    //debugger;
-    //if (draft.recipients.length == 0) {
-    //    console.log('Message has no recipients!')
-    //    return
-    //}
-
-    var messageBody = e.target.value
-    //actions.addMessageBody(messageBody)
-    if (messageBody) {
-        dispatch(DraftActions.sendNewDraft(messageBody))
+    if (draft.recipients.length == 0) {
+        console.log('Message has no recipients!')
+        return
     }
+
+    var messageBody = this.textarea.value
+    if (messageBody) {
+        dispatch(DraftActions.sendDraft(messageBody))
+    }
+    this.textarea.value = ''
   }
 
   onSendClick(e) {
@@ -37,24 +36,23 @@ class MessageInput extends Component {
     const { dispatch, draft } = this.props
 
     // If no recipients, no-op
-    //debugger;
-    //if (draft.recipients.length == 0) {
-    //    console.log('Message has no recipients!')
-    //    return
-    //}
-
-    var messageBody = e.target.value
-    //actions.addMessageBody(messageBody)
-    if (messageBody) {
-        dispatch(DraftActions.sendNewDraft(messageBody))
+    if (draft.recipients.length == 0) {
+        console.log('Message has no recipients!')
+        return
     }
+
+    var messageBody = this.textarea.value
+    if (messageBody) {
+        dispatch(DraftActions.sendDraft(messageBody))
+    }
+    this.textarea.value = ''
   }
 
   render() {
     return (
       <div className={style.messageInput}>
-        <textarea placeholder="Enter a message..." rows="1" onKeyPress={this.onKeyPress.bind(this)} ></textarea>
-        <a href="#" className={style.button} onClick={this.onSendClick}>Send</a>
+        <textarea ref={(c) => this.textarea = c} placeholder="Enter a message..." rows="1" onKeyPress={this.onKeyPress.bind(this)} ></textarea>
+        <a href="#" className={style.button} onClick={this.onSendClick.bind(this)}>Send</a>
       </div>
     )
   }

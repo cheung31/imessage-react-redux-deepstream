@@ -1,5 +1,5 @@
 
-import { Router, Route, browserHistory } from 'react-router'
+import { Router, Route, browserHistory, IndexRoute } from 'react-router'
 import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom'
 import React from 'react'
@@ -14,7 +14,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <Route path="new" component={NewConversation}/>
+        <IndexRoute component={NewConversation} />
         <Route path="conversations/:conversationId" component={ViewConversation}/>
       </Route>
     </Router>

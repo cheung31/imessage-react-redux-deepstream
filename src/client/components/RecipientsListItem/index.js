@@ -24,10 +24,6 @@ class RecipientsListItem extends Component {
     }.bind( this ));
   }
 
-  componentWillUnmount() {
-    this.record.discard()
-  }
-
   render() {
     return (
       <li className={style.recipientsListItem} onClick={this.onClick.bind(this)}>

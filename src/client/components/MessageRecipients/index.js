@@ -14,7 +14,7 @@ class MessageRecipients extends Component {
   }
 
   render() {
-    const { users, recipients } = this.props
+    const { recipients } = this.props
     return (
       <div className={style.messageRecipients}>
         <span className={style.toLabel}>To:</span>

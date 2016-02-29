@@ -2,15 +2,26 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { browserHistory } from 'react-router'
+
 import Conversations from '../../components/Conversations'
 import Conversation from '../../components/Conversation'
 import * as SelectedConversationActions from '../../actions/selectedConversation'
+import * as DraftActions from '../../actions/draft'
 import App from '../../containers/App'
 import style from './style.css'
 
 class ViewConversation extends Component {
   componentWillMount() {
-    const { params } = this.props
+    const { params, conversationsById} = this.props
+    const selectedConversation = 'conversations/'+params.conversationId
+    this.setState({
+      selectedConversation: selectedConversation
+    });
+  }
+
+  componentDidMount() {
+    const { params, conversationsById} = this.props
     const selectedConversation = 'conversations/'+params.conversationId
     this.setState({
       selectedConversation: selectedConversation
@@ -18,7 +29,7 @@ class ViewConversation extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { actions } = this.props
+    const { actions, draftActions, conversationsById } = this.props
     const selectedConversation = 'conversations/'+nextProps.params.conversationId
     console.log('<<< SWITCHING TO: ', selectedConversation);
     actions.viewConversation(selectedConversation)
@@ -53,7 +64,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(SelectedConversationActions, dispatch)
+    actions: bindActionCreators(SelectedConversationActions, dispatch),
+    draftActions: bindActionCreators(DraftActions, dispatch)
   }
 }
 

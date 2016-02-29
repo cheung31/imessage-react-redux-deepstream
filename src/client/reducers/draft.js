@@ -16,8 +16,16 @@ export default handleActions({
   },
 
   'add recipient' (state, action) {
+    var u = {}
+    var recipients = []
+    for (let recipient of [...state.recipients, 'users/'+action.payload]) {
+      if (!u.hasOwnProperty(recipient) ) {
+        u[recipient] = recipient
+        recipients.push(recipient)
+      }
+    }
     return {
-        recipients: [...state.recipients, 'users/'+action.payload],
+        recipients: recipients,
         body: state.body
     }
   },
