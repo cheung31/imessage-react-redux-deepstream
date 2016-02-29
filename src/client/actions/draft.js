@@ -49,11 +49,6 @@ export function sendDraft(body) {
                 conversationRecord.set('lastMessage', body)
             }
 
-            // Add message to store
-            dispatch(ConversationActions.addMessage(Object.assign({
-                conversationId: conversationId
-            }, messageObj )))
-
             // Add conversation to participant conv lists
             for (let index in participants) {
                 var listId = participants[index] + '/conversations'
@@ -66,13 +61,17 @@ export function sendDraft(body) {
                 })
             }
 
+            // Add message to store
+            dispatch(ConversationActions.addMessage(Object.assign({
+                conversationId: conversationId
+            }, messageObj )))
+
             if (isNewConv) {
                 // If new conversation, navigate to conversation
                 browserHistory.push('/' + conversationId)
             }
         })
 
-        //debugger;
         dispatch(clearDraft())
     }
 }
