@@ -16,10 +16,15 @@ class RecipientsList extends Component {
   render() {
     const { users, profile, visible } = this.props
     var items = []
-    for (let index in users) {
-        if (users[index] !== 'users/'+profile.username) {
-            items.push(<RecipientsListItem key={index} user={users[index]} />)
+    var filtered = users.filter(function (user) {
+        if (user == 'users/' + profile.username) {
+            return false
         }
+        return true
+    })
+    console.log(filtered, profile.username)
+    for (let index in filtered) {
+        items.push(<RecipientsListItem key={filtered[index]} user={filtered[index]} />)
     }
     return (
       <div className={[visible ? style.recipientsListVisible : style.recipientsList, style.animate].join(' ')}>

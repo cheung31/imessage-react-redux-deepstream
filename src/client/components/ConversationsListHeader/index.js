@@ -10,8 +10,6 @@ class ConversationsListHeader extends Component {
   onAddConversationClick(e) {
       e.preventDefault()
       const { dispatch } = this.props
-      dispatch(NewConversationActions.newConversation(true))
-      dispatch(DraftActions.clearDraft())
       browserHistory.push('/')
   }
 

@@ -14,7 +14,7 @@ import style from './style.css'
 
 class ConversationThreadContainer extends Component {
   componentWillReceiveProps(nextProps) {
-    const { draftActions, profile, conversation, selectedConversation, conversationsById, showRecipientsList, actions } = nextProps
+    const { newConversation, draftActions, profile, conversation, selectedConversation, conversationsById, showRecipientsList, actions } = nextProps
     var conv = conversationsById[selectedConversation] || conversation
     if (conv && conv.participants) {
         var filtered = conv.participants.filter(function (participant) {
@@ -24,10 +24,12 @@ class ConversationThreadContainer extends Component {
             return false
         })
         draftActions.clearDraft()
-        for (let userId of filtered) {
-            console.log('RECIPIENT:', conv.id, userId);
-            console.log(nextProps);
-            draftActions.addRecipient(userId.split('/')[1])
+        if (!newConversation) {
+            for (let userId of filtered) {
+                console.log('RECIPIENT:', conv.id, userId);
+                console.log(nextProps);
+                draftActions.addRecipient(userId.split('/')[1])
+            }
         }
     }
   }
@@ -56,6 +58,7 @@ class ConversationThreadContainer extends Component {
 function mapStateToProps(state) {
   var conversationsState = state.conversations
   return {
+    newConversation: state.newConversation,
     profile: state.profile,
     selectedConversation: state.selectedConversation,
     conversationsById: conversationsState.conversationsById,
