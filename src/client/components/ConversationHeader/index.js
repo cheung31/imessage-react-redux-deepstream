@@ -1,18 +1,25 @@
 
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import style from './style.css'
 
 class ConversationHeader extends Component {
   render() {
-    const { titleLabel } = this.props
+    const { newConversation, titleLabel } = this.props
     return (
       <header className={style.header}>
         <div className={style.title}>
-          <span className={style.titleLabel}>{titleLabel}</span>
+          <span className={style.titleLabel}>{newConversation ? 'New message' : titleLabel}</span>
         </div>
       </header>
     )
   }
 }
 
-export default ConversationHeader
+function mapStateToProps(state) {
+  var conversationsState = state.conversations
+  return {
+    newConversation: state.newConversation
+  }
+}
+export default connect(mapStateToProps)(ConversationHeader)

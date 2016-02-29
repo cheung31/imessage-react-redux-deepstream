@@ -14,12 +14,18 @@ class MessageRecipients extends Component {
   }
 
   render() {
+    const { newConversation } = this.props
+    var addRecipientButton
+    if (newConversation) {
+        addRecipientButton = 
+          <a href="#" className={style.titleRightAction} onClick={this.onClickAddRecipient.bind(this)}>+</a>
+    }
     const { recipients } = this.props
     return (
       <div className={style.messageRecipients}>
         <span className={style.toLabel}>To:</span>
         <textarea row="1" value={recipients.join(', ')}></textarea> 
-        <a href="#" className={style.titleRightAction} onClick={this.onClickAddRecipient.bind(this)}>+</a>
+        {addRecipientButton}
       </div>
     )
   }
@@ -28,6 +34,7 @@ class MessageRecipients extends Component {
 function mapStateToProps(state) {
   var draftState = state.draft
   return {
+    newConversation: state.newConversation,
     recipients: draftState.recipients,
     availableRecipients: draftState.availableRecipients,
     body: draftState.body

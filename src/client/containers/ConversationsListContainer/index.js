@@ -8,9 +8,10 @@ import style from './style.css'
 
 class ConversationsListContainer extends Component {
   render() {
-    const { selectedConversation, conversations, conversationsById } = this.props
+    const { newConversation, selectedConversation, conversations, conversationsById } = this.props
       return (
         <ConversationsList
+            newConversation={newConversation}
             selectedConversation={selectedConversation}
             conversations={conversations}
             conversationsById={conversationsById} />
@@ -21,6 +22,7 @@ class ConversationsListContainer extends Component {
 function mapStateToProps(state) {
   var conversationsState = state.conversations
   return {
+    newConversation: state.newConversation,
     selectedConversation: state.selectedConversation,
     conversations: conversationsState.conversations,
     conversationsById: conversationsState.conversationsById

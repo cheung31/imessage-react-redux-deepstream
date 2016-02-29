@@ -41,7 +41,7 @@ class ConversationThread extends Component {
   }
 
   render() {
-    const { conversation, onSendMessage, onReceivedMessage, onReadMessage, onStartTyping } = this.props
+    const { newConversation, conversation, onSendMessage, onReceivedMessage, onReadMessage, onStartTyping } = this.props
 
     var messages = this.state ? this.state.messages : []
     if (!messages.length && conversation) {
@@ -49,7 +49,7 @@ class ConversationThread extends Component {
     }
     console.log('~~~ b', messages.length);
     var messageItems = []
-    if (conversation) {
+    if (conversation && !newConversation) {
         for (let index in messages) {
           var message = messages[index]
           messageItems.push(<Message key={message} message={message} />)
@@ -66,6 +66,7 @@ class ConversationThread extends Component {
 
 function mapStateToProps(state) {
   return {
+    newConversation: state.newConversation,
     profile: state.profile,
     selectedConversation: state.selectedConversation
   }
