@@ -3,12 +3,18 @@
     overflow: hidden;
 }
 
+a {
+    text-decoration: none;
+}
+
 h3 {
     color: #111;
     margin-bottom: 0;
 }
 
 .listDescription {
+    color: #333;
+    text-decoration: none;
     display: inline-block;
     text-overflow:ellipsis;
     overflow: hidden;
