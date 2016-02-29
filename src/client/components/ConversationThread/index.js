@@ -8,14 +8,6 @@ import App from '../../containers/App'
 import style from './style.css'
 
 class ConversationThread extends Component {
-  componentDidMount() {
-    window.addEventListener('load', function(event) {
-      setTimeout(function () {
-      this.threadList.scrollTop = this.threadList.scrollHeight * 2; 
-      }.bind(this), 750);
-    }.bind(this));
-  }
-
   componentWillReceiveProps() {
     const { profile, selectedConversation } = this.props
     if (profile.username && selectedConversation) {
@@ -28,7 +20,9 @@ class ConversationThread extends Component {
   }
 
   componentWillUnmount() {
-      this.conversationRecord.unsubscribe('messages')
+      if (this.conversationRecord) {
+        this.conversationRecord.unsubscribe('messages')
+      }
   }
 
   render() {
@@ -38,17 +32,16 @@ class ConversationThread extends Component {
     if (!messages.length && conversation) {
         messages = conversation.messages
     }
-    var messageItems= [<li className={style.listPadder}></li>]
+    var messageItems = []
     if (conversation) {
-        console.log('<<< SHOWING THREAD: ', conversation.id);
-        console.log('<<< MESSAGES: ', messages);
         for (let index in messages) {
           var message = messages[index]
           messageItems.push(<Message key={message} message={message} />)
         }
     }
     return (
-      <div className={style.threadContainer}>
+      <div ref={(c) => this.threadContainer = c} className={style.threadContainer}>
+        <div ref={(c) => this.paddingItem = c} className={style.listPadder}></div>
         <ul ref={(c) => this.threadList = c}>{messageItems}</ul>
       </div>
     )
