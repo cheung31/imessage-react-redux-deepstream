@@ -24,6 +24,7 @@ class ViewConversation extends Component {
     const { actions, draftActions, conversationsById } = this.props
     const selectedConversation = 'conversations/'+nextProps.params.conversationId
     console.log('<<< SWITCHING TO: ', selectedConversation);
+    debugger;
     actions.viewConversation(selectedConversation)
     this.setState({
       selectedConversation: selectedConversation

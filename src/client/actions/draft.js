@@ -49,7 +49,7 @@ export function sendDraft(body) {
                 }
             } else {
                 // Otherwise, append messageId
-                var messagesList = [messageId, ...conv.messages]
+                var messagesList = [...conv.messages, messageId]
                 conversationRecord.set('messages', messagesList)
                 conversationRecord.set('lastMessage', body)
             }
