@@ -7,7 +7,6 @@ class ConversationsList extends Component {
   render() {
     const { selectedConversation, conversations, conversationsById, onConversationClick } = this.props
     var items = []
-    console.log('<<<<<<<<<<<<<<<', conversations);
     for (let index in conversations) {
       var conversationId = conversations[index]
       items.push(<li key={conversationId} className={selectedConversation == conversationId ? style.selectedListItem : ''}><ConversationsListItem conversation={conversationsById[conversationId]} /></li>)

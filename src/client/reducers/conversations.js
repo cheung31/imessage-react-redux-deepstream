@@ -34,6 +34,7 @@ export default handleActions({
   'add message' (state, action) {
     var conversationsById = Object.assign({}, state.conversationsById)
     conversationsById[action.payload.conversationId].messages = [action.payload, ...state.conversationsById[action.payload.conversationId].messages]
+    conversationsById[action.payload.conversationId].lastMessage = action.payload.body
     return Object.assign({}, state, {
       conversationsById: conversationsById 
     })
