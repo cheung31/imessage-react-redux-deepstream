@@ -1,7 +1,12 @@
 # TODO
 
+## Tooling
+* Test suite
+* Linting
+* Continuous Integration
+
 ## Client side
-* Mobile friendly
+* Mobile friendly/responsive web application
 * Typing indicator
 * Message status (delivered / read)
 * Time stamp indicators
