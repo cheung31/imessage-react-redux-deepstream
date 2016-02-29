@@ -9,14 +9,6 @@ import App from '../../containers/App'
 import style from './style.css'
 
 class NewConversation extends Component {
-  componentDidMount() {
-    const { dispatch } = this.props
-    var anonymousConversation = App.ds.record.getAnonymousRecord()
-    dispatch(ConversationActions.addConversation({
-        title: 'New Message'
-    }))
-  }
-
   render() {
     return (
       <div>

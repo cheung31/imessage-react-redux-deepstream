@@ -7,17 +7,19 @@ import { browserHistory } from 'react-router'
 import Conversations from '../../components/Conversations'
 import Conversation from '../../components/Conversation'
 import * as SelectedConversationActions from '../../actions/selectedConversation'
+import * as NewConversationActions from '../../actions/newConversation'
 import * as DraftActions from '../../actions/draft'
 import App from '../../containers/App'
 import style from './style.css'
 
 class ViewConversation extends Component {
   componentWillMount() {
-    const { params, conversationsById} = this.props
+    const { params, conversationsById, newConversationActions} = this.props
     const selectedConversation = 'conversations/'+params.conversationId
     this.setState({
       selectedConversation: selectedConversation
     });
+    newConversationActions.newConversation(false)
   }
 
   componentDidMount() {
@@ -65,7 +67,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(SelectedConversationActions, dispatch),
-    draftActions: bindActionCreators(DraftActions, dispatch)
+    draftActions: bindActionCreators(DraftActions, dispatch),
+    newConversationActions: bindActionCreators(NewConversationActions, dispatch)
   }
 }
 

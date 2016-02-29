@@ -7,6 +7,7 @@ import recipientsList from './recipientsList'
 import draft from './draft'
 import profile from './profile'
 import selectedConversation from './selectedConversation'
+import newConversation from './newConversation'
 
 export default combineReducers({
   routing,
@@ -15,5 +16,6 @@ export default combineReducers({
   recipientsList,
   draft,
   profile,
-  selectedConversation
+  selectedConversation,
+  newConversation
 })
