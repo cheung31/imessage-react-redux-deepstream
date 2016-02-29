@@ -4,7 +4,7 @@ module.exports = function (app, passport) {
 
     // route for chat app
     app.get('/', isLoggedIn, function (req, res) {
-        res.redirect('localhost:3000/new');
+        res.redirect('localhost:3000/');
     });
 
     // login page
@@ -14,7 +14,7 @@ module.exports = function (app, passport) {
 
     // process the login form
     app.post('/login', passport.authenticate('local-login', {
-        successRedirect : 'http://localhost:3000/new', // redirect the secure app
+        successRedirect : 'http://localhost:3000/', // redirect the secure app
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));

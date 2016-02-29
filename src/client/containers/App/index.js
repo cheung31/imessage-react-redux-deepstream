@@ -24,6 +24,10 @@ class App extends Component {
   componentWillMount() {
     const { dispatch } = this.props
     const sid = Cookie.get('imsg-sess')
+    if (sid == undefined) {
+        window.location = 'http://localhost:8001'
+        return
+    }
     App.ds.login({ sid: sid }, function (success, errorCode, userObj) {
         var userId = 'users/' + userObj.username
         console.log('<<< userId', userId)
