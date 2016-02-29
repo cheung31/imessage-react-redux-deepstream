@@ -1,5 +1,6 @@
 # TODO
 
+## Client side
 * Mobile friendly
 * Typing indicator
 * Message status (delivered / read)
@@ -10,5 +11,8 @@
 * Support Unicode 8.0 to allow emojis
 * Handle delivered acknowledgement
 * Handle read receipt
-* paginated history via minimal rest api
 * Direct manipulation pan to reveal timestamps
+
+## Server side
+* paginated history via minimal rest api
+* Persist to data store and add caching (e.g. Redis integration to Deepstream.io) instead of default in-memory storage
