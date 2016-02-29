@@ -8,15 +8,29 @@ import App from '../../containers/App'
 import style from './style.css'
 
 class ConversationThread extends Component {
+  componentWillMount() {
+    setTimeout(() => {
+        this.threadContainer.scrollTop = this.threadList.scrollHeight;
+    }, 1500)
+  }
+
   componentWillReceiveProps(nextProps) {
     const { profile, selectedConversation } = nextProps
     if (profile.username && selectedConversation) {
         console.log("SUBSCRIBING TO: ", selectedConversation)
         this.conversationRecord = App.ds.record.getRecord(selectedConversation)
-        this.conversationRecord.whenReady(function () {
+        this.conversationRecord.whenReady(() => {
           var messages = this.conversationRecord.get('messages')
           this.setState({ messages: messages })
-        }.bind(this))
+          this.threadContainer.scrollTop = this.threadList.scrollHeight;
+
+          this.conversationRecord.subscribe('messages', (messages) => {
+            this.setState({ messages: messages })
+            setTimeout(() => {
+                this.threadContainer.scrollTop = this.threadList.scrollHeight;
+            }, 100)
+          })
+        })
     }
   }
 
