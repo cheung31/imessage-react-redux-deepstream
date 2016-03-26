@@ -84,4 +84,4 @@ $ npm start
 ```
 
 # License
-No License. Copyright 2016 Ryan H Cheung.
+MIT
