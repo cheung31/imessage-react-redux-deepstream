@@ -44,6 +44,7 @@ class App extends Component {
             }
             dispatch(UsersActions.updateUserList(updatedUsersList))
         })
+        usersList.addEntry(userId)
 
         var conversationListId = userId + '/conversations'
         console.log('<<< conversationListId', conversationListId)
