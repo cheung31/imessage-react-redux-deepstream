@@ -11,7 +11,9 @@ class Message extends Component {
     console.log('<<< MESSAGE ID: ', message);
     this.record = App.ds.record.getRecord(message);
     this.record.whenReady( function() {
-        this.setState(this.record.get() );
+        setTimeout(function () {
+            this.setState(this.record.get() );
+        }.bind(this), 250);
     }.bind( this ));   
   }
 
