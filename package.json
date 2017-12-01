@@ -48,7 +48,7 @@
     "cookie-parser": "1.4.1",
     "cookie-session": "1.2.0",
     "deepstream.io": "0.8.0",
-    "ejs": "2.4.1",
+    "ejs": "^2.5.5",
     "express": "4.13.4",
     "express-session": "1.13.0",
     "mongoose": "4.4.4",
